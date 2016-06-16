@@ -21,3 +21,6 @@
   shell: '/usr/local/bin/docker-compose up -d'
   args:
     chdir: /docker/mrkunkel_resume/
+
+- name: "Restart Caddy Server"
+  shell: '/usr/bin/docker restart caddy'
