@@ -12,4 +12,4 @@ services:
 
 networks:
   external_network:
-    external: true
+    external: True
