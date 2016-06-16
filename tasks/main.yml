@@ -1,0 +1,23 @@
+---
+# tasks file for ansible-role-docker-resume
+- name: "Create conf and volume directories"
+  file: path={{ item.path }} state=directory recurse=yes
+  with_items:
+    - { path: '/docker/mrkunkel_resume' }
+
+- name: "Create vhost Caddyfile from template"
+  template: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: 'vhost.j2', dest: '/docker/caddy/vhosts/mrkunkel_resume' }
+
+- name: "Copy docker-compose.yml"
+  copy: src=docker-compose.yml dest=/docker/mrkunkel_resume/docker-compose.yml
+
+- name: "Pull docker images"
+  shell: '/usr/bin/docker pull {{ item.provider }}/{{ item.image }}:{{ item.tag }}'
+  with_items: "{{ docker_images }}"
+
+- name: "Start mrkunkel_resume container"
+  shell: '/usr/local/bin/docker-compose up -d'
+  args:
+    chdir: /docker/mrkunkel_resume/
