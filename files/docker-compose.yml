@@ -8,8 +8,8 @@ services:
     expose:
       - "80"
     networks:
-      - caddy_external_hrc51
+      - external_network
 
 networks:
-  caddy_external_hrc51:
+  external_network:
     external: true
