@@ -2,7 +2,7 @@
   log stdout
   errors stderr
   tls {{ admin_email }}
-  proxy / http://mrkunkel-resume.external_network:80 {
+  proxy / http://mrkunkel-resume.caddy_external_network:80 {
     proxy_header Host {host}
   }
 }

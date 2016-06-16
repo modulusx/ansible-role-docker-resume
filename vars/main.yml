@@ -1,2 +1,4 @@
 ---
 # vars file for ansible-role-docker-resume
+docker_images:
+  - { provider: "mrkunkel", image: "nginx_resume", tag: "latest" }
